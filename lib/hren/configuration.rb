@@ -1,6 +1,6 @@
 module Hren
   class Configuration
-    attr_accessor :secret
+    attr_accessor :secret, :api_url
   end
 
   module Configurable
