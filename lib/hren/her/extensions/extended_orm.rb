@@ -5,17 +5,40 @@ module Hren
         extend ActiveSupport::Concern
 
         module ClassMethods
-          def find(*ids)
-            response = super(*ids)
-            return response if response.is_a?(Array)
-            return nil if response.data_empty?
-            response
-          end
-
           def create!(*args)
             resource = create(*args)
             raise Exception.new([resource.errors.keys.first, resource.errors.values.first].join(' ')) unless resource.errors.empty?
             resource
+          end
+
+          def first
+            resources = all(hren_special_action: 'first')
+            resource = resources.first
+            resource.errors = resources.errors
+            resource.metadata = resources.metadata
+            resource
+          end
+
+          def last
+            resources = all(hren_special_action: 'last')
+            resource = resources.first
+            resource.errors = resources.errors
+            resource.metadata = resources.metadata
+            resource
+          end
+
+          def where(*args)
+            @where_conditions ||= []
+            @where_conditions << args
+            self
+          end
+
+          def all(params = {})
+            unless @where_conditions.nil?
+              params[:hren_special_where] = MultiJson.dump(@where_conditions)
+              @where_conditions = nil
+            end
+            super(params)
           end
         end
 
@@ -41,9 +64,17 @@ module Hren
         end
 
         def destroy!
-          destroy(params)
-          raise_exception_if_present!
+          destroy
+          raise Exception.new('Destroy failed') if metadata[:hren_action_success] == false
           self
+        end
+
+        def delete
+          destroy
+        end
+
+        def delete!
+          destroy!
         end
       end
     end

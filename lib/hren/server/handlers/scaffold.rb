@@ -5,10 +5,25 @@ module Hren
         DEFAULT_PER_PAGE = 20
 
         def index
-          if defined?(WillPaginate)
+          if params[:hren_special_action] == 'first'
+            respond_with_collection([resource_class.first])
+          elsif params[:hren_special_action] == 'last'
+            respond_with_collection([resource_class.last])
+          elsif params[:hren_special_where].present?
+            relation = resource_class
+            conditions = MultiJson.load(params[:hren_special_where])
+            conditions.each do |condition|
+              if condition.is_a?(Hash)
+                relation = relation.where(condition)
+              else
+                relation = relation.where(*condition)
+              end
+            end
+            respond_with_collection(relation.all)
+          elsif defined?(WillPaginate) && params[:page].present?
             per_page = params[:per_page] || DEFAULT_PER_PAGE
-            data = resource_class.paginate(page: params[:page], per_page: per_page)
-            hren_response.meta = { page: data.current_page, per_page: per_page, count: data.count }
+            data = resource_class.paginate(page: params[:page], per_page: per_page).all
+            hren_response.metadata = { page: data.current_page, per_page: per_page, total: resource_class.count }
             respond_with_collection(data)
           else
             respond_with_collection(resource_class.all)
@@ -30,7 +45,8 @@ module Hren
         end
 
         def destroy
-          hren_response.success = resource.destroy
+          resource.destroy
+          hren_response.success = resource.destroyed?
           respond_with_resource
         end
       end

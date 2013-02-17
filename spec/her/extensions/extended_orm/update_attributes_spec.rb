@@ -21,7 +21,7 @@ describe Hren::Her::Extensions::ExtendedOrm do
   end
 
   describe '#update_attributes!' do
-    it 'should return a new record without rising exception' do
+    it 'should update attributes of a record without rising exception' do
       expect {
         article = Article.find(1)
         article.should be_instance_of(Article)

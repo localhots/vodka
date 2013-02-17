@@ -19,6 +19,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'multi_json'
 
   gem.add_development_dependency 'rails'
+  gem.add_development_dependency 'will_paginate'
   gem.add_development_dependency 'sqlite3'
   gem.add_development_dependency 'thin'
 

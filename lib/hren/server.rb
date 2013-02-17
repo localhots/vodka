@@ -1,10 +1,4 @@
-require 'hren/server/middleware/signed_request'
-require 'hren/server/handlers/resource'
-require 'hren/server/handlers/response'
-require 'hren/server/handlers/scaffold'
-require 'hren/server/controllers/hren_controller'
-require 'hren/server/plugins/presentable'
-require 'hren/server/response'
+require 'hren/server/railtie'
 
 module Hren
   module Server

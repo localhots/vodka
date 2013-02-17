@@ -19,7 +19,6 @@ module Hren
         else
           presented_data = data.present_hren
           errors = presented_data.delete(:errors)
-          metadata = presented_data.delete(:metadata)
         end
 
         MultiJson.dump(
