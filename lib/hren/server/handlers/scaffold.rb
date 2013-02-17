@@ -5,31 +5,33 @@ module Hren
         DEFAULT_PER_PAGE = 20
 
         def index
-          per_page = params[:per_page] || DEFAULT_PER_PAGE
-          data = resource_class.paginate(page: params[:page], per_page: per_page)
-          respond_with(data: data, meta: { page: data.current_page, per_page: per_page, count: data.count })
+          if defined?(WillPaginate)
+            per_page = params[:per_page] || DEFAULT_PER_PAGE
+            data = resource_class.paginate(page: params[:page], per_page: per_page)
+            hren_response.meta = { page: data.current_page, per_page: per_page, count: data.count }
+            respond_with_collection(data)
+          else
+            respond_with_collection(resource_class.all)
+          end
         end
 
         def show
-          respond_with(data: resource)
+          respond_with_resource
         end
 
         def create
-          respond_with(data: resource_class.create(filtered_params))
+          set_resource resource_class.create(filtered_params)
+          respond_with_resource
         end
 
         def update
-          success = resource.update_attributes(filtered_params)
-          response = { data: resource }
-          response[:errors] = { update: 'Failed' } unless success
-          respond_with(data: response)
+          hren_response.success = resource.update_attributes(filtered_params)
+          respond_with_resource
         end
 
         def destroy
-          success = resource.destroy
-          response = { data: resource }
-          response[:errors] = { destroy: 'Failed' } unless success
-          respond_with(data: response)
+          hren_response.success = resource.destroy
+          respond_with_resource
         end
       end
     end

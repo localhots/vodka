@@ -1,6 +1,14 @@
 # Hren
 Hren uses [Her](https://github.com/remiprev/her) to make communication between two rails apps a lot easier.
 
+It currently supports ORM's on server:
+- [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord)
+- [MongoMapper](https://github.com/jnunemaker/mongomapper)
+Plugins:
+- [WillPaginate](https://github.com/mislav/will_paginate)
+
+It is strongly recommended *NOT* to use this gem in production (yet).
+
 ## Installation
 Add this gem to both server and client application Gemfiles:
 ```ruby
@@ -54,6 +62,7 @@ Modify your models:
 class Article < ActiveRecord::Base
   has_many :comments
   scope :best, ->{ where('rating > 100') }
+  validates_presence_of :title, :body
 
   # Defines fields and actions that would be used in :as_json method
   present_with :id, :title, :body, :created_at
@@ -63,6 +72,7 @@ end
 class Comment < ActiveRecord::Base
   belongs_to :article
   belongs_to :user
+  validates_presence_of :body
 
   # Defines fields and actions that would be used in :as_json method
   present_with :id, :body, :author_name, :created_at
@@ -89,5 +99,18 @@ Hren::Client.configure do |c|
 end
 ```
 
+## Usage
+After all the configuration is done, you can use your Her-applied models with all the new possibilities.
+```ruby
+Article.create!
+article.update_attribute(:title, 'Wut')
+article.update_attribute!(:title, 'Wut')
+article.update_attributes(title: 'Wut')
+article.update_attributes!(title: 'Wut')
+article.destroy!
+article.delete
+article.delete!
+Article.where('rating > ?', 10)
+Article.where(user_id: 1)
 ## What the hell is hren?
 "Hren" means "horseradish" in Russian. It is also a common Russian euphemism for "dick", so is the word "her".

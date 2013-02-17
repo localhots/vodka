@@ -18,7 +18,9 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'faraday'
   gem.add_runtime_dependency 'multi_json'
 
+  gem.add_development_dependency 'rails'
+  gem.add_development_dependency 'sqlite3'
+  gem.add_development_dependency 'thin'
+
   gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'webmock'
-  gem.add_development_dependency 'awesome_print'
 end

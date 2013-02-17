@@ -3,9 +3,9 @@ module Hren
     module Plugins
       module Presentable
         def present_with(*methods)
-          define_method 'as_json' do
+          define_method 'present_hren' do
             json = Hash[methods.map{ |method| [method, send(method)] }]
-            json[:errors] = errors
+            json[:errors] = errors.messages
             json[:metadata] = {}
             json
           end

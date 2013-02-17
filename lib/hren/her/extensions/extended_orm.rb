@@ -2,11 +2,21 @@ module Hren
   module Her
     module Extensions
       module ExtendedOrm
-        def find(*ids)
-          response = super(*ids)
-          return response if response.is_a?(Array)
-          return nil if response.data_empty?
-          response
+        extend ActiveSupport::Concern
+
+        module ClassMethods
+          def find(*ids)
+            response = super(*ids)
+            return response if response.is_a?(Array)
+            return nil if response.data_empty?
+            response
+          end
+
+          def create!(*args)
+            resource = create(*args)
+            raise Exception.new([resource.errors.keys.first, resource.errors.values.first].join(' ')) unless resource.errors.empty?
+            resource
+          end
         end
 
         def update_attributes(params)
@@ -18,7 +28,7 @@ module Hren
 
         def update_attributes!(params)
           update_attributes(params)
-          raise_exception_if_present!
+          raise Exception.new([errors.keys.first, errors.values.first].join(' ')) unless errors.empty?
           self
         end
 
@@ -34,24 +44,6 @@ module Hren
           destroy(params)
           raise_exception_if_present!
           self
-        end
-
-        alias_method :where, :all
-        alias_method :delete, :destroy
-        alias_method :delete!, :destroy!
-
-      private
-
-        def data_empty?
-          data.data.empty?
-        end
-
-        def raise_exception_if_present!
-          if metadata.has_key?(:exception)
-            klass = metadata[:exception][:class]
-            message = metadata[:exception][:message]
-            raise klass.new(message)
-          end
         end
       end
     end

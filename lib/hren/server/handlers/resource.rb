@@ -5,7 +5,11 @@ module Hren
       private
 
         def resource
-          @resource ||= resource_class.find_by_id(params[:id])
+          @resource ||= params.has_key?(:id) ? resource_class.find_by_id(params[:id]) : nil
+        end
+
+        def set_resource(resource)
+          @resource = resource
         end
 
         def filtered_params

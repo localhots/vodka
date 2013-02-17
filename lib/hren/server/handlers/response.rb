@@ -2,28 +2,35 @@ module Hren
   module Server
     module Handlers
       module Response
+
+        def hren_response
+          @hren_response ||= Hren::Server::Response.new
+        end
+
       private
 
-        def respond_with(parameters)
-          response = {}
-          data = {
-            data: parameters[:data] || {},
-            errors: parameters[:errors] || {},
-            metadata: parameters[:meta] || {}
-          }
-          response[:content_type] = parameters[:content_type] || 'application/json'
-          response[:status] = parameters[:status] || 200
-          response[:text] = MultiJson.dump(data)
+        def respond_with_resource
+          hren_response.data = resource
+          respond!
+        end
 
-          render response
+        def respond_with_collection(resources)
+          hren_response.data = resources
+          respond!
+        end
+
+        def respond!
+          render text: hren_response.json, status: hren_response.code, content_type: 'application/json'
         end
 
         def respond_with_error(message, code)
-          respond_with({error: message}, status: code)
+          hren_response.errors[:hren_global] = message
+          hren_response.code = code
+          respond!
         end
 
         def not_found
-          respond_with(data: {})
+          respond_with_error('Not Found', code: 404)
         end
       end
     end

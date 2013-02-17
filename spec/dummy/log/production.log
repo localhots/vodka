@@ -1,0 +1,84 @@
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Started POST "/hren/articles" for 127.0.0.1 at 2013-02-17 23:36:40 +0400
+
+ActionController::RoutingError (uninitialized constant Hren::ArticlesController):
+  .bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/inflector/methods.rb:230:in `block in constantize'
+  .bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/inflector/methods.rb:229:in `each'
+  .bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/inflector/methods.rb:229:in `constantize'
+  .bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  .bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  .bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/routing/route_set.rb:32:in `call'
+  .bundle/ruby/1.9.1/gems/journey-1.0.4/lib/journey/router.rb:68:in `block in call'
+  .bundle/ruby/1.9.1/gems/journey-1.0.4/lib/journey/router.rb:56:in `each'
+  .bundle/ruby/1.9.1/gems/journey-1.0.4/lib/journey/router.rb:56:in `call'
+  .bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/routing/route_set.rb:601:in `call'
+  .bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  .bundle/ruby/1.9.1/gems/rack-1.4.5/lib/rack/etag.rb:23:in `call'
+  .bundle/ruby/1.9.1/gems/rack-1.4.5/lib/rack/conditionalget.rb:35:in `call'
+  .bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/head.rb:14:in `call'
+  .bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  .bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/flash.rb:242:in `call'
+  .bundle/ruby/1.9.1/gems/rack-1.4.5/lib/rack/session/abstract/id.rb:210:in `context'
+  .bundle/ruby/1.9.1/gems/rack-1.4.5/lib/rack/session/abstract/id.rb:205:in `call'
+  .bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  .bundle/ruby/1.9.1/gems/activerecord-3.2.12/lib/active_record/query_cache.rb:64:in `call'
+  .bundle/ruby/1.9.1/gems/activerecord-3.2.12/lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  .bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  .bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/callbacks.rb:405:in `_run__4421635454166910888__call__1209524848265979701__callbacks'
+  .bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/callbacks.rb:405:in `__run_callback'
+  .bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  .bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/callbacks.rb:81:in `run_callbacks'
+  .bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  .bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  .bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  .bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  .bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/rack/logger.rb:32:in `call_app'
+  .bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/rack/logger.rb:16:in `block in call'
+  .bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/tagged_logging.rb:22:in `tagged'
+  .bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/rack/logger.rb:16:in `call'
+  .bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  .bundle/ruby/1.9.1/gems/rack-1.4.5/lib/rack/methodoverride.rb:21:in `call'
+  .bundle/ruby/1.9.1/gems/rack-1.4.5/lib/rack/runtime.rb:17:in `call'
+  .bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  .bundle/ruby/1.9.1/gems/rack-1.4.5/lib/rack/lock.rb:15:in `call'
+  .bundle/ruby/1.9.1/gems/rack-cache-1.2/lib/rack/cache/context.rb:136:in `forward'
+  .bundle/ruby/1.9.1/gems/rack-cache-1.2/lib/rack/cache/context.rb:143:in `pass'
+  .bundle/ruby/1.9.1/gems/rack-cache-1.2/lib/rack/cache/context.rb:155:in `invalidate'
+  .bundle/ruby/1.9.1/gems/rack-cache-1.2/lib/rack/cache/context.rb:71:in `call!'
+  .bundle/ruby/1.9.1/gems/rack-cache-1.2/lib/rack/cache/context.rb:51:in `call'
+  .bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/engine.rb:479:in `call'
+  .bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/application.rb:223:in `call'
+  .bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/railtie/configurable.rb:30:in `method_missing'
+  .bundle/ruby/1.9.1/gems/thin-1.5.0/lib/thin/connection.rb:81:in `block in pre_process'
+  .bundle/ruby/1.9.1/gems/thin-1.5.0/lib/thin/connection.rb:79:in `catch'
+  .bundle/ruby/1.9.1/gems/thin-1.5.0/lib/thin/connection.rb:79:in `pre_process'
+  .bundle/ruby/1.9.1/gems/thin-1.5.0/lib/thin/connection.rb:54:in `process'
+  .bundle/ruby/1.9.1/gems/thin-1.5.0/lib/thin/connection.rb:39:in `receive_data'
+  .bundle/ruby/1.9.1/gems/eventmachine-1.0.0/lib/eventmachine.rb:187:in `run_machine'
+  .bundle/ruby/1.9.1/gems/eventmachine-1.0.0/lib/eventmachine.rb:187:in `run'
+  .bundle/ruby/1.9.1/gems/thin-1.5.0/lib/thin/backends/base.rb:63:in `start'
+  .bundle/ruby/1.9.1/gems/thin-1.5.0/lib/thin/server.rb:159:in `start'
+  .bundle/ruby/1.9.1/gems/thin-1.5.0/lib/thin/controllers/controller.rb:86:in `start'
+  .bundle/ruby/1.9.1/gems/thin-1.5.0/lib/thin/runner.rb:187:in `run_command'
+  .bundle/ruby/1.9.1/gems/thin-1.5.0/lib/thin/runner.rb:152:in `run!'
+  .bundle/ruby/1.9.1/gems/thin-1.5.0/bin/thin:6:in `<top (required)>'
+  .bundle/ruby/1.9.1/bin/thin:23:in `load'
+  .bundle/ruby/1.9.1/bin/thin:23:in `<main>'
+
+

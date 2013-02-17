@@ -25,7 +25,7 @@ module Hren
         def request_signature
           Digest::SHA512.hexdigest([
             env[:url].scheme, env[:url].host, env[:url].port, env[:url].path,
-            request_id, Hren.config.secret
+            request_id, Hren::Client.config.secret
           ].join)
         end
       end

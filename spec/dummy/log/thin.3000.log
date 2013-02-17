@@ -1,0 +1,99 @@
+>> Writing PID to tmp/pids/thin.3000.pid
+>> Using rack adapter
+>> Exiting!
+/Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activerecord-3.2.12/lib/active_record/dynamic_matchers.rb:55:in `method_missing': undefined method `present_with' for Article(Table doesn't exist):Class (NoMethodError)
+	from /Users/chez/Code/hren/spec/dummy/app/models/article.rb:2:in `<class:Article>'
+	from /Users/chez/Code/hren/spec/dummy/app/models/article.rb:1:in `<top (required)>'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:251:in `require'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:251:in `block in require'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:236:in `load_dependency'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:251:in `require'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:359:in `require_or_load'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:502:in `load_missing_constant'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:192:in `block in const_missing'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:190:in `each'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:190:in `const_missing'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/inflector/methods.rb:230:in `block in constantize'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/inflector/methods.rb:229:in `each'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/inflector/methods.rb:229:in `constantize'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/inflector/methods.rb:260:in `safe_constantize'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/core_ext/string/inflections.rb:66:in `safe_constantize'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_controller/metal/params_wrapper.rb:152:in `_default_wrap_model'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_controller/metal/params_wrapper.rb:169:in `_set_wrapper_defaults'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_controller/metal/params_wrapper.rb:133:in `inherited'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/abstract_controller/railties/routes_helpers.rb:7:in `block (2 levels) in with'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/actionpack-3.2.12/lib/action_controller/railties/paths.rb:7:in `block (2 levels) in with'
+	from /Users/chez/Code/hren/spec/dummy/app/controllers/hren/articles_controller.rb:1:in `<top (required)>'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:251:in `require'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:251:in `block in require'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:236:in `load_dependency'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:251:in `require'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:359:in `require_or_load'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:313:in `depend_on'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/activesupport-3.2.12/lib/active_support/dependencies.rb:225:in `require_dependency'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/engine.rb:439:in `block (2 levels) in eager_load!'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/engine.rb:438:in `each'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/engine.rb:438:in `block in eager_load!'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/engine.rb:436:in `each'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/engine.rb:436:in `eager_load!'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/application/finisher.rb:53:in `block in <module:Finisher>'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/initializable.rb:30:in `instance_exec'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/initializable.rb:30:in `run'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/initializable.rb:55:in `block in run_initializers'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/initializable.rb:54:in `each'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/initializable.rb:54:in `run_initializers'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/application.rb:136:in `initialize!'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/railties-3.2.12/lib/rails/railtie/configurable.rb:30:in `method_missing'
+	from /Users/chez/Code/hren/spec/dummy/config/environment.rb:5:in `<top (required)>'
+	from /Users/chez/Code/hren/spec/dummy/config.ru:3:in `require'
+	from /Users/chez/Code/hren/spec/dummy/config.ru:3:in `block in <main>'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/rack-1.4.5/lib/rack/builder.rb:51:in `instance_eval'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/rack-1.4.5/lib/rack/builder.rb:51:in `initialize'
+	from /Users/chez/Code/hren/spec/dummy/config.ru:1:in `new'
+	from /Users/chez/Code/hren/spec/dummy/config.ru:1:in `<main>'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/thin-1.5.0/lib/rack/adapter/loader.rb:33:in `eval'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/thin-1.5.0/lib/rack/adapter/loader.rb:33:in `load'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/thin-1.5.0/lib/rack/adapter/loader.rb:42:in `for'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/thin-1.5.0/lib/thin/controllers/controller.rb:169:in `load_adapter'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/thin-1.5.0/lib/thin/controllers/controller.rb:73:in `start'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/thin-1.5.0/lib/thin/runner.rb:187:in `run_command'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/thin-1.5.0/lib/thin/runner.rb:152:in `run!'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/gems/thin-1.5.0/bin/thin:6:in `<top (required)>'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/bin/thin:23:in `load'
+	from /Users/chez/Code/hren/spec/dummy/.bundle/ruby/1.9.1/bin/thin:23:in `<main>'
+>> Writing PID to tmp/pids/thin.3000.pid
+>> Using rack adapter
+>> Thin web server (v1.5.0 codename Knife)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3000, CTRL+C to stop
+>> Exiting!
+>> Writing PID to tmp/pids/thin.3000.pid
+>> Using rack adapter
+>> Thin web server (v1.5.0 codename Knife)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3000, CTRL+C to stop
+>> Exiting!
+>> Writing PID to tmp/pids/thin.3000.pid
+>> Using rack adapter
+>> Thin web server (v1.5.0 codename Knife)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3000, CTRL+C to stop
+>> Exiting!
+>> Writing PID to tmp/pids/thin.3000.pid
+>> Using rack adapter
+>> Thin web server (v1.5.0 codename Knife)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3000, CTRL+C to stop
+>> Exiting!
+>> Writing PID to tmp/pids/thin.3000.pid
+>> Using rack adapter
+>> Thin web server (v1.5.0 codename Knife)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3000, CTRL+C to stop
+>> Exiting!
+>> Writing PID to tmp/pids/thin.3000.pid
+>> Using rack adapter
+>> Thin web server (v1.5.0 codename Knife)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:3000, CTRL+C to stop
+>> Exiting!
