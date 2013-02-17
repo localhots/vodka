@@ -12,6 +12,4 @@ module Hren
       yield config if block_given?
     end
   end
-
-  extend Configurable
 end
