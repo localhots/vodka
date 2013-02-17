@@ -1,9 +1,6 @@
 # Hren
 Hren uses [Her](https://github.com/remiprev/her) to make communication between two rails apps a lot easier.
 
-## What the hell is hren?
-"Hren" means "horseradish" in Russian. It is also a common Russian euphemism for "dick", so is the word "her".
-
 ## Installation
 Add this gem to both server and client application Gemfiles:
 ```ruby
@@ -52,8 +49,8 @@ end
 ```
 
 Modify your models:
-# article.rb
 ```ruby
+# article.rb
 class Article < ActiveRecord::Base
   has_many :comments
   scope :best, ->{ where('rating > 100') }
@@ -92,6 +89,5 @@ Hren::Client.configure do |c|
 end
 ```
 
-
-
-
+## What the hell is hren?
+"Hren" means "horseradish" in Russian. It is also a common Russian euphemism for "dick", so is the word "her".
