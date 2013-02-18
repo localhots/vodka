@@ -1,5 +1,7 @@
-# Hren
-Hren uses [Her](https://github.com/remiprev/her) to make communication between two rails apps a lot easier.
+# Vodka
+Vodka makes communication easier. Always.
+
+Vodka uses [Her](https://github.com/remiprev/her) as a REST client.
 
 It currently supports ORM's on server:
 - [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord)
@@ -14,24 +16,24 @@ It is strongly recommended *NOT* to use this gem in production (yet).
 Add this gem to both server and client application Gemfiles:
 ```ruby
 # Server
-gem 'hren', require: 'hren/server'
+gem 'vodka', require: 'vodka/server'
 
 # Client
-gem 'hren', require: 'hren/client'
+gem 'vodka', require: 'vodka/client'
 ```
 
 ## Configuring server
-Add initializer `hren_setup.rb` to `config/initializers`:
+Add initializer `vodka_setup.rb` to `config/initializers`:
 
 ```ruby
-Hren::Server.configure do |c|
+Vodka::Server.configure do |c|
   c.secret = 'whatever'
 end
 ```
 
-Add hren namespaced resources to your `config/routes.rb`
+Add vodka namespaced resources to your `config/routes.rb`
 ```ruby
-namespace :hren do
+namespace :vodka do
   resources :articles do
     collection { get :best }
     resources :comments do
@@ -41,19 +43,19 @@ namespace :hren do
 end
 ```
 
-Create controllers in `app/controllers/hren`
+Create controllers in `app/controllers/vodka`
 ```ruby
 # articles_controller.rb
-class ArticlesController < Hren::Server::HrenController
+class ArticlesController < VodkaController
   def best
     respond_with_collection(Article.best)
   end
 end
 
 # comments_controller.rb
-class CommentsController < Hren::Server::HrenController
+class CommentsController < Vodka::Server::VodkaController
   def approve
-    hren_response.success = resource.approve
+    vodka_response.success = resource.approve
     respond_with_resource
   end
 end
@@ -91,20 +93,20 @@ end
 ```
 
 ## Configuring client
-Add initializer `hren_setup.rb` to `config/initializers`:
+Add initializer `vodka_setup.rb` to `config/initializers`:
 
 ```ruby
-Hren::Client.configure do |c|
-  c.api_url = 'https://api.myproject.org/hren'
+Vodka::Client.configure do |c|
+  c.api_url = 'https://api.myproject.org/vodka'
   c.secret = 'whatever' # Same as server's
 end
-Hren::Client.config.configure_her!
+Vodka::Client.configure_her!
 ```
 
 ## Usage
 After all the configuration is done, you can use your Her-applied models with all the new possibilities.
 
-Hren adds some convinient methods to client and supports them on server:
+Vodka adds some convinient methods to client and supports them on server:
 - `.create!` (throws exception on error)
 - `.paginate` (same as `.all`, for WillPaginate compatibility)
 - `.where` (supports chaining the way you expect)
@@ -115,6 +117,3 @@ Hren adds some convinient methods to client and supports them on server:
 - `#destroy!` (throws exception on error)
 - `#delete` (acts as `#destroy`)
 - `#delete!` (acts as `#destroy!`)
-
-## What the hell is hren?
-"Hren" means "horseradish" in Russian. It is also a common Russian euphemism for "dick", so is the word "her".

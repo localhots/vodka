@@ -11,4 +11,4 @@ after_failure:
   - ./script/show_logs
 notifications:
   hipchat:
-    secure: "ZRBjkrxpnCw4AYpITgXBA5nGpWHECFbPLZaoG0t1KGTGsd7QzG0bG+aRcGts\nHXqhP6aCkFB74K7IxGk+/C5kj7mVYwD4XjF6VRXULgYy3HZtSuh87vQnBIoX\nSi27onNxIbKHCnD/ctysz8SF+zgB1hTPt+Q1cySG8XEtadNLN1o="
+    secure: "SUoVBD+3cNXuzHK/xiww4e2jWdo9GHz+YE09s+z0K51nPtlTy9NFaBF41O7W\nMc4sz0ZxktnVrpVvyOGmLj933uyyRjhfK9X3R6Fn/BMzWDI1S4Z2NqhKq3xy\nGpLjEAX8UPtWXR0Cs4GxTwxTM6rjIW/I/5IpM6hiwRErSBXBin0="

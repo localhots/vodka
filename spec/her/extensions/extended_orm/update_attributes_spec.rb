@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Hren::Her::Extensions::ExtendedOrm do
+describe Vodka::Her::Extensions::ExtendedOrm do
   describe '#update_attributes' do
     it 'should update attributes of a record' do
       article = Article.find(1)
@@ -38,7 +38,7 @@ describe Hren::Her::Extensions::ExtendedOrm do
 
         article.update_attributes!(title: '')
         article.title.should == ''
-      }.to raise_exception(Hren::Client::ResourceException, "title can't be blank")
+      }.to raise_exception(Vodka::Client::ResourceException, "title can't be blank")
     end
   end
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Hren::Her::Extensions::ExtendedOrm do
+describe Vodka::Her::Extensions::ExtendedOrm do
   describe '#create' do
     it 'should return a new record' do
       article = Article.create(title: 'foo')
@@ -27,7 +27,7 @@ describe Hren::Her::Extensions::ExtendedOrm do
         article = Article.create!(title: '')
         article.id.should_not be_present
         article.errors[:title].should be_present
-      }.to raise_exception(Hren::Client::ResourceException, "title can't be blank")
+      }.to raise_exception(Vodka::Client::ResourceException, "title can't be blank")
     end
   end
 end

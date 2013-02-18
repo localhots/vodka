@@ -6,4 +6,4 @@ gem 'sqlite3', '~> 1.3.7'
 gem 'thin', '~> 1.5.0'
 gem 'multi_json', '~> 1.6.1'
 
-gem 'hren', path: '../..', require: 'hren/server'
+gem 'vodka', path: '../..', require: 'vodka/server'

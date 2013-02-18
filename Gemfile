@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in hren.gemspec
+# Specify your gem's dependencies in vodka.gemspec
 gemspec

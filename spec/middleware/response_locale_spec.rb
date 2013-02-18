@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'spec_helper'
 
-describe Hren::Client::Middleware::SignedRequest do
+describe Vodka::Client::Middleware::SignedRequest do
   it 'should pass current locale and recieve correctly localized response' do
     I18n.locale = :en
     Article.hello.metadata[:hello].should == 'Hello World!'

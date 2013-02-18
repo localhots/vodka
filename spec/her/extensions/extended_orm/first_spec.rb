@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Hren::Her::Extensions::ExtendedOrm do
+describe Vodka::Her::Extensions::ExtendedOrm do
   describe '.first' do
     it 'should return the first record' do
       article = Article.first

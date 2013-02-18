@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Hren::Her::Extensions::ExtendedOrm do
+describe Vodka::Her::Extensions::ExtendedOrm do
   describe '#delete' do
     it 'should call #destroy method' do
       article = Article.create(title: 'test')
-      article.metadata[:hren_action_success] = true
+      article.metadata[:vodka_action_success] = true
       article.stub(:destroy).and_return(article)
       article.should_receive(:destroy).once
       article.delete
@@ -14,7 +14,7 @@ describe Hren::Her::Extensions::ExtendedOrm do
   describe '#delete!' do
     it 'should call #destroy! method' do
       article = Article.create(title: 'test')
-      article.metadata[:hren_action_success] = true
+      article.metadata[:vodka_action_success] = true
       article.stub(:destroy!).and_return(article)
       article.should_receive(:destroy!).once
       article.delete!

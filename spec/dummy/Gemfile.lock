@@ -1,7 +1,7 @@
 PATH
   remote: ../..
   specs:
-    hren (0.0.1)
+    vodka (0.0.1)
       her (~> 0.4)
       multi_json (~> 1.6.1)
 
@@ -105,9 +105,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  hren!
   multi_json (~> 1.6.1)
   rails (~> 3.2.12)
   sqlite3 (~> 1.3.7)
   thin (~> 1.5.0)
+  vodka!
   will_paginate (~> 3.0.4)

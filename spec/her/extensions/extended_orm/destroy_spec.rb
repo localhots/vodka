@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-describe Hren::Her::Extensions::ExtendedOrm do
+describe Vodka::Her::Extensions::ExtendedOrm do
   describe '#destroy' do
     it 'should return a record with successful action status' do
       article = Article.create(title: 'test')
       article.destroy
-      article.metadata[:hren_action_success].should be_true
+      article.metadata[:vodka_action_success].should be_true
     end
 
     it 'should return a record with failed action status' do
       article = Article.create(title: 'special')
       article.destroy
-      article.metadata[:hren_action_success].should be_false
+      article.metadata[:vodka_action_success].should be_false
     end
   end
 
@@ -20,7 +20,7 @@ describe Hren::Her::Extensions::ExtendedOrm do
       expect {
         article = Article.create(title: 'test')
         article.destroy!
-        article.metadata[:hren_action_success].should be_true
+        article.metadata[:vodka_action_success].should be_true
       }.not_to raise_exception
     end
 
@@ -28,8 +28,8 @@ describe Hren::Her::Extensions::ExtendedOrm do
       expect {
         article = Article.create(title: 'special')
         article.destroy!
-        article.metadata[:hren_action_success].should be_false
-      }.to raise_exception(Hren::Client::FailedActionException, 'Destroy failed')
+        article.metadata[:vodka_action_success].should be_false
+      }.to raise_exception(Vodka::Client::FailedActionException, 'Destroy failed')
     end
   end
 end

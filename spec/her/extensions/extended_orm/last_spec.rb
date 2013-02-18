@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Hren::Her::Extensions::ExtendedOrm do
+describe Vodka::Her::Extensions::ExtendedOrm do
   describe '.last' do
     it 'should return the last record' do
       article = Article.last

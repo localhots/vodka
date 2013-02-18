@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Hren::Her::Extensions::ExtendedOrm do
+describe Vodka::Her::Extensions::ExtendedOrm do
   describe '.where' do
     before(:all) do
       @article = Article.create(title: 'looking for this one')
