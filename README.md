@@ -1,4 +1,4 @@
-# Vodka
+# Vodka [![Build Status](https://travis-ci.org/magnolia-fan/vodka.png)](https://travis-ci.org/magnolia-fan/vodka)
 Vodka makes communication easier. Always.
 
 Vodka uses [Her](https://github.com/remiprev/her) as a REST client.
