@@ -7,7 +7,7 @@ module Vodka
       include Handlers::Resource
       include Handlers::Response
 
-      before_filter :fix_params_names, :set_locale
+      before_filter :set_response_id, :fix_params_names, :set_locale
       before_filter :handle_not_found, only: [:show, :update, :destroy]
 
     private
@@ -24,6 +24,10 @@ module Vodka
 
       def handle_not_found
         not_found if resource.nil? && vodka_response.success == false
+      end
+
+      def set_response_id
+        vodka_response.id = request.headers['X-Request-Id']
       end
     end
   end

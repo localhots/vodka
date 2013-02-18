@@ -1,6 +1,6 @@
 module Vodka
   class Configuration
-    attr_accessor :secret, :api_url
+    attr_accessor :request_secret, :response_secret, :api_url
   end
 
   module Configurable
@@ -17,6 +17,7 @@ module Vodka
         c.use Vodka::Client::Middleware::ErrorAware
         c.use Vodka::Client::Middleware::SignedRequest
         c.use Faraday::Request::UrlEncoded
+        c.use Vodka::Client::Middleware::SignedResponse
         c.use ::Her::Middleware::SecondLevelParseJSON
         c.use Faraday::Adapter::NetHttp
       end

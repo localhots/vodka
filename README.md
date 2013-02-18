@@ -3,14 +3,16 @@ Vodka makes communication easier. Always.
 
 Vodka uses [Her](https://github.com/remiprev/her) as a REST client.
 
-It currently supports ORM's on server:
+It currently supports these ORMs on server:
 - [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord)
 - [MongoMapper](https://github.com/jnunemaker/mongomapper)
 
-Plugins:
+And the following plugins:
 - [WillPaginate](https://github.com/mislav/will_paginate)
 
-It is strongly recommended *NOT* to use this gem in production (yet).
+Vodka supports I18n. If you change locale on client you may expect getting response from server in this locale.
+
+Vodka signs all requests and responses so you can relax and hope nothing goes wrong. Or your sensitive data will be stolen by some Russian gangsters. Or there will be some man-in-the-middle that will attack you. Anyway, as long as you're not using SSL for all your requests you're screwed.
 
 ## Installation
 Add this gem to both server and client application Gemfiles:
@@ -27,7 +29,8 @@ Add initializer `vodka_setup.rb` to `config/initializers`:
 
 ```ruby
 Vodka::Server.configure do |c|
-  c.secret = 'whatever'
+  c.request_secret = '8089c2189321798bf60df6b8c01bb661fb585080'
+  c.response_secret = '3ecb42ac23cd58994a6518971e7e31d2f4545e3c'
 end
 ```
 
@@ -53,7 +56,7 @@ class ArticlesController < VodkaController
 end
 
 # comments_controller.rb
-class CommentsController < Vodka::Server::VodkaController
+class CommentsController < VodkaController
   def approve
     vodka_response.success = resource.approve
     respond_with_resource
@@ -98,9 +101,20 @@ Add initializer `vodka_setup.rb` to `config/initializers`:
 ```ruby
 Vodka::Client.configure do |c|
   c.api_url = 'https://api.myproject.org/vodka'
-  c.secret = 'whatever' # Same as server's
+  c.request_secret = '8089c2189321798bf60df6b8c01bb661fb585080'  # Same as server's
+  c.response_secret = '3ecb42ac23cd58994a6518971e7e31d2f4545e3c' # Same as server's
 end
 Vodka::Client.configure_her!
+
+# Instead of calling Vodka::Client.configure_her! you may configure her yourself
+# Her::API.setup(url: Vodka::Client.config.api_url) do |c|
+#   c.use Vodka::Client::Middleware::ErrorAware
+#   c.use Vodka::Client::Middleware::SignedRequest
+#   c.use Faraday::Request::UrlEncoded
+#   c.use Vodka::Client::Middleware::SignedResponse
+#   c.use Her::Middleware::SecondLevelParseJSON
+#   c.use Faraday::Adapter::NetHttp
+# end
 ```
 
 ## Usage
@@ -108,12 +122,17 @@ After all the configuration is done, you can use your Her-applied models with al
 
 Vodka adds some convinient methods to client and supports them on server:
 - `.create!` (throws exception on error)
-- `.paginate` (same as `.all`, for WillPaginate compatibility)
+- `.paginate` (returns WillPaginate-compatible collection)
 - `.where` (supports chaining the way you expect)
+- `.first`
+- `.last`
 - `#update_attribute`
 - `#update_attribute!` (throws exception on error)
 - `#update_attributes`
 - `#update_attributes!` (throws exception on error)
 - `#destroy!` (throws exception on error)
-- `#delete` (acts as `#destroy`)
-- `#delete!` (acts as `#destroy!`)
+- `#delete` (acts like `#destroy`)
+- `#delete!` (acts like `#destroy!`)
+
+## Is it secure? Should I use it in production?
+Hell no. At least not yet.

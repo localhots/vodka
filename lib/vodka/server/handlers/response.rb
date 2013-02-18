@@ -20,6 +20,8 @@ module Vodka
         end
 
         def respond!
+          response.headers['X-Response-Id'] = vodka_response.id
+          response.headers['X-Response-Signature'] = vodka_response.signature
           return render text: vodka_response.json, status: vodka_response.code, content_type: 'application/json'
         end
 

@@ -1,7 +1,7 @@
 module Vodka
   module Server
     class Response
-      attr_accessor :code, :success, :data, :metadata, :errors
+      attr_accessor :id, :code, :success, :data, :metadata, :errors
 
       def initialize
         @code = 200
@@ -28,6 +28,10 @@ module Vodka
           metadata: metadata,
           errors: errors_to_return
         )
+      end
+
+      def signature
+        Digest::SHA512.hexdigest([id, Vodka::Server.config.response_secret].join)
       end
     end
   end

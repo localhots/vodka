@@ -16,22 +16,39 @@ module Vodka
         end
 
         def request_signature_valid?
-          env['HTTP_X_REQUEST_SIGNATURE'] == request_signature
+          request_signature == expected_request_signature
+        end
+
+        def request_id
+          env['HTTP_X_REQUEST_ID']
         end
 
         def request_signature
-          Digest::SHA512.hexdigest([
-            request.scheme, request.host, request.port, request.path,
-            env['HTTP_X_REQUEST_ID'], Vodka::Server.config.secret
-          ].join)
+          env['HTTP_X_REQUEST_SIGNATURE']
+        end
+
+        def expected_request_signature
+          Digest::SHA512.hexdigest([request_id, Vodka::Server.config.request_secret].join)
+        end
+
+        def response_signature
+          Digest::SHA512.hexdigest([request_id, Vodka::Server.config.response_secret].join)
         end
 
         def forbidden
-          [
-            403,
-            { 'Content-Type' => 'application/json; charset=utf-8' },
-            ['{"data":null,"errors":{"vodka_error":"403 Forbidden"},"metadata":{}}']
-          ]
+          headers = {
+            'Content-Type'         => 'application/json; charset=utf-8',
+            'X-Response-Id'        => request_id,
+            'X-Response-Signature' => response_signature
+          }
+          data = {
+            data: nil,
+            errors: {
+              vodka_error: '403 Forbidden'
+            },
+            metadata: {}
+          }
+          [403, headers, [MultiJson.dump(data)]]
         end
       end
     end
