@@ -9,7 +9,7 @@ require 'vodka/client/middleware/signed_request'
 require 'vodka/client/middleware/signed_response'
 require 'vodka/client/middleware/error_aware'
 require 'vodka/her/extensions/extended_orm'
-require 'vodka/her/extensions/will_paginate'
+require 'vodka/her/extensions/paginated'
 
 module Vodka
   module Client

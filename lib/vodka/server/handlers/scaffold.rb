@@ -4,18 +4,16 @@ module Vodka
       module Scaffold
         def index
           if params[:vodka_special_action] == 'first'
-            resources = [resource_class.first]
+            return respond_with_collection([resource_class.first])
           elsif params[:vodka_special_action] == 'last'
-            resources = [resource_class.last]
-          elsif params[:vodka_special_where].present?
-            resources = vodka_special_where
-          elsif params[:page].present? && defined?(::WillPaginate)
-            resources = vodka_special_paginate
-          else
-            resources = resource_class.all
+            return respond_with_collection([resource_class.last])
           end
 
-          respond_with_collection(resources)
+          @relation = resource_class
+          vodka_apply_where_conditions!
+          vodka_apply_pagination_conditions!
+
+          respond_with_collection(@relation.all)
         end
 
         def show
@@ -39,23 +37,26 @@ module Vodka
 
       private
 
-        def vodka_special_where
-          relation = resource_class
-          conditions = MultiJson.load(params[:vodka_special_where])
-          conditions.each do |condition|
+        def vodka_apply_where_conditions!
+          return unless params[:vodka_special_where].present?
+
+          MultiJson.load(params[:vodka_special_where]).each do |condition|
             if condition.is_a?(Hash)
-              relation = relation.where(condition)
+              @relation = @relation.where(condition)
             else
-              relation = relation.where(*condition)
+              @relation = @relation.where(*condition)
             end
           end
-          relation.all
         end
 
-        def vodka_special_paginate
-          data = resource_class.paginate(page: params[:page], per_page: params[:per_page]).all
-          vodka_response.metadata = { page: data.current_page, per_page: data.per_page, total: resource_class.count }
-          data
+        def vodka_apply_pagination_conditions!
+          return unless params[:page].present? && params[:per_page].present?
+
+          page = params[:page].to_i.abs
+          per_page = params[:per_page].to_i.abs
+
+          @relation = @relation.offset((page - 1) * per_page).limit(per_page)
+          vodka_response.metadata = { current_page: page, per_page: per_page, total_entries: resource_class.count }
         end
       end
     end

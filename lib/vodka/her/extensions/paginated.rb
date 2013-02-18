@@ -1,7 +1,7 @@
 module Vodka
   module Her
     module Extensions
-      module WillPaginate
+      module Paginated
         extend ActiveSupport::Concern
 
         module ClassMethods
@@ -14,7 +14,7 @@ module Vodka
 
       class PaginatedCollection < ::Her::Collection
         def current_page
-          metadata[:page].to_i
+          metadata[:current_page].to_i
         end
 
         def per_page
@@ -22,11 +22,11 @@ module Vodka
         end
 
         def total_entries
-          metadata[:total].to_i
+          metadata[:total_entries].to_i
         end
       end
     end
   end
 end
 
-Her::Model.send(:include, Vodka::Her::Extensions::WillPaginate)
+Her::Model.send(:include, Vodka::Her::Extensions::Paginated)

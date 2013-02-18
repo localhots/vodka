@@ -3,12 +3,12 @@ Vodka makes communication easier. Always.
 
 Vodka uses [Her](https://github.com/remiprev/her) as a REST client.
 
-It currently supports these ORMs on server:
+Vodka currently supports these ORMs on server:
 - [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord)
 - [MongoMapper](https://github.com/jnunemaker/mongomapper)
 
-And the following plugins:
-- [WillPaginate](https://github.com/mislav/will_paginate)
+And the following plugins on client:
+- [WillPaginate](https://github.com/mislav/will_paginate) (and compatible)
 
 Vodka supports I18n. If you change locale on client you may expect getting response from server in this locale.
 
