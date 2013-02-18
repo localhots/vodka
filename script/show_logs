@@ -1,17 +1,22 @@
 #!/bin/bash
+dummy_path="$(pwd)/spec/dummy"
+
+echo 'Bundler log:'
+cat $dummy_path/log/bundler.log
+echo ''
 
 echo 'Setup DB log:'
-cat spec/dummy/log/setup_db.log
+cat $dummy_path/log/setup_db.log
 echo ''
 
 echo 'Thin start log:'
-cat spec/dummy/log/thin_start.log
+cat $dummy_path/log/thin_start.log
 echo ''
 
 echo 'Thin log:'
-cat spec/dummy/log/thin.3000.log
+cat $dummy_path/log/thin.3000.log
 echo ''
 
 echo 'Dummy log:'
-cat spec/dummy/log/production.log
+cat $dummy_path/log/test.log
 echo ''

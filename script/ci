@@ -1,0 +1,4 @@
+#!/bin/bash
+BUNDLE_PATH=.bundle
+BUNDLE_GEMFILE=Gemfile
+bundle exec rspec

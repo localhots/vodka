@@ -5,11 +5,16 @@ module Hren
       private
 
         def resource
-          @resource ||= params.has_key?(:id) ? resource_class.find_by_id(params[:id]) : nil
+          @resource ||= extract_resource
         end
 
-        def set_resource(resource)
-          @resource = resource
+        def extract_resource
+          return unless params.has_key?(:id)
+
+          new_resource = resource_class.find_by_id(params[:id])
+          hren_response.success = false if new_resource.nil?
+
+          new_resource
         end
 
         def filtered_params

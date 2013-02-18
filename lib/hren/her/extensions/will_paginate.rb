@@ -1,5 +1,3 @@
-require 'will_paginate/collection'
-
 module Hren
   module Her
     module Extensions

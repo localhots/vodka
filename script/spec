@@ -2,12 +2,13 @@
 
 cd spec/dummy
 rm -f log/*
-RAILS_ENV=production bundle exec rake db:reset 2>&1 > log/setup_db.log
-RAILS_ENV=production bundle exec thin start -C config/thin.yml 2>&1 > log/thin_start.log
+bundle install --path .bundle 2>&1 > log/bundler.log
+RAILS_ENV=test bundle exec rake db:reset 2>&1 > log/setup_db.log
+RAILS_ENV=test bundle exec thin start -C config/thin.yml 2>&1 > log/thin_start.log
 cd ../..
 bundle exec rspec
 code=$?
 cd spec/dummy
-RAILS_ENV=production bundle exec thin stop -C config/thin.yml 2>&1 > log/thin_stop.log
+RAILS_ENV=test bundle exec thin stop -C config/thin.yml 2>&1 > log/thin_stop.log
 cd ../..
 exit $code

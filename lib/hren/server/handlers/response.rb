@@ -9,8 +9,8 @@ module Hren
 
       private
 
-        def respond_with_resource
-          hren_response.data = resource
+        def respond_with_resource(custom_resource = nil)
+          hren_response.data = custom_resource || resource
           respond!
         end
 
@@ -20,17 +20,13 @@ module Hren
         end
 
         def respond!
-          render text: hren_response.json, status: hren_response.code, content_type: 'application/json'
-        end
-
-        def respond_with_error(message, code)
-          hren_response.errors[:hren_global] = message
-          hren_response.code = code
-          respond!
+          return render text: hren_response.json, status: hren_response.code, content_type: 'application/json'
         end
 
         def not_found
-          respond_with_error('Not Found', code: 404)
+          hren_response.errors[:hren_error] = '404 Not Found'
+          hren_response.code = 404
+          respond!
         end
       end
     end

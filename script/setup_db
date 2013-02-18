@@ -1,2 +1,7 @@
 #!/bin/bash
-cd spec/dummy && RAILS_ENV=production bundle exec rake db:reset 2>&1 > log/setup_db.log
+dummy_path="$(pwd)/spec/dummy"
+BUNDLE_PATH=$dummy_path/.bundle
+BUNDLE_GEMFILE=$dummy_path/Gemfile
+RAILS_ENV=test
+cd $dummy_path && bundle exec rake db:migrate 2>&1 > $dummy_path/log/setup_db.log
+cd $dummy_path && bundle exec rake db:test:prepare 2>&1 > $dummy_path/log/setup_db.log

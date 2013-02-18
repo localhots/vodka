@@ -1,6 +1,8 @@
+require 'action_controller' unless defined?(::ActionController)
+
 module Hren
   module Server
-    class HrenController < ActionController::Base
+    class HrenController < ::ActionController::Base
       include Handlers::Scaffold
       include Handlers::Resource
       include Handlers::Response
@@ -13,7 +15,7 @@ module Hren
       def set_locale
         return unless defined?(I18n)
         locale = request.headers['X-Response-Locale']
-        I18n.locale = locale if locale.present? && locale.in?(I18n.available_locales)
+        I18n.locale = locale if locale.present? && locale.to_sym.in?(I18n.available_locales)
       end
 
       def fix_params_names
@@ -21,8 +23,10 @@ module Hren
       end
 
       def handle_not_found
-        return not_found if resource.nil?
+        not_found if resource.nil? && hren_response.success == false
       end
     end
   end
 end
+
+HrenController = Hren::Server::HrenController

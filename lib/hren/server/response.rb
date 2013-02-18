@@ -14,17 +14,19 @@ module Hren
 
         if data.nil?
           presented_data = nil
+          errors_to_return = errors
         elsif data.is_a?(Array)
           presented_data = data.map(&:present_hren)
+          errors_to_return = errors
         else
           presented_data = data.present_hren
-          errors = presented_data.delete(:errors)
+          errors_to_return = presented_data.delete(:errors)
         end
 
         MultiJson.dump(
           data: presented_data,
           metadata: metadata,
-          errors: errors
+          errors: errors_to_return
         )
       end
     end

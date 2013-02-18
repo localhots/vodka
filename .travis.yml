@@ -1,7 +1,8 @@
 rvm:
   - 1.9.3
-script: 'bundle exec rspec'
+script: ./script/ci
 before_script:
+  - ./script/bundle_dummy
   - ./script/setup_db
   - ./script/start_server
 after_script:

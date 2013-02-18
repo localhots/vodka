@@ -1,2 +1,4 @@
 #!/bin/bash
-cd spec/dummy && bundle install --path .bundle
+dummy_path="$(pwd)/spec/dummy"
+BUNDLE_GEMFILE=$dummy_path/Gemfile
+cd $dummy_path && bundle install --path $dummy_path/.bundle 2>&1 > $dummy_path/log/bundler.log

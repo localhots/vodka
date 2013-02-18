@@ -1,7 +1,7 @@
 module Hren
   module Client
-    class ForbiddenException < ::Exception
-      MESSAGE = '403 Forbidden'
+    class NotFoundException < ::Exception
+      MESSAGE = '404 Not Found'
 
       def initialize
         super(MESSAGE)

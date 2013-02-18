@@ -16,11 +16,6 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency 'her', '~> 0.4'
   gem.add_runtime_dependency 'multi_json', '~> 1.6.1'
-
-  gem.add_development_dependency 'rails', '~> 3.2.12'
-  gem.add_development_dependency 'will_paginate', '~> 3.0.4'
-  gem.add_development_dependency 'sqlite3', '~> 1.3.7'
-  gem.add_development_dependency 'thin', '~> 1.5.0'
-
   gem.add_development_dependency 'rspec', '~> 2.12.0'
+  gem.add_development_dependency 'i18n', '~> 0.6.1'
 end

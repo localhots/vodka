@@ -2,20 +2,20 @@ module Hren
   module Server
     module Handlers
       module Scaffold
-        DEFAULT_PER_PAGE = 20
-
         def index
           if params[:hren_special_action] == 'first'
-            respond_with_collection([resource_class.first])
+            resources = [resource_class.first]
           elsif params[:hren_special_action] == 'last'
-            respond_with_collection([resource_class.last])
+            resources = [resource_class.last]
           elsif params[:hren_special_where].present?
-            _special_where
-          elsif defined?(WillPaginate) && params[:page].present?
-            _special_paginate
+            resources = hren_special_where
+          elsif params[:page].present? && defined?(::WillPaginate)
+            resources = hren_special_paginate
           else
-            respond_with_collection(resource_class.all)
+            resources = resource_class.all
           end
+
+          respond_with_collection(resources)
         end
 
         def show
@@ -23,8 +23,7 @@ module Hren
         end
 
         def create
-          set_resource resource_class.create(filtered_params)
-          respond_with_resource
+          respond_with_resource(resource_class.create(filtered_params))
         end
 
         def update
@@ -40,7 +39,7 @@ module Hren
 
       private
 
-        def _special_where
+        def hren_special_where
           relation = resource_class
           conditions = MultiJson.load(params[:hren_special_where])
           conditions.each do |condition|
@@ -50,14 +49,13 @@ module Hren
               relation = relation.where(*condition)
             end
           end
-          respond_with_collection(relation.all)
+          relation.all
         end
 
-        def _special_paginate
-          per_page = params[:per_page] || DEFAULT_PER_PAGE
-          data = resource_class.paginate(page: params[:page], per_page: per_page).all
-          hren_response.metadata = { page: data.current_page, per_page: per_page, total: resource_class.count }
-          respond_with_collection(data)
+        def hren_special_paginate
+          data = resource_class.paginate(page: params[:page], per_page: params[:per_page]).all
+          hren_response.metadata = { page: data.current_page, per_page: data.per_page, total: resource_class.count }
+          data
         end
       end
     end

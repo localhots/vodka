@@ -1,5 +1,7 @@
 Dummy::Application.routes.draw do
   namespace :hren do
-    resources :articles
+    resources :articles do
+      collection{ get :hello }
+    end
   end
 end
