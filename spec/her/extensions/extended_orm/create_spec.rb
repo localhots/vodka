@@ -27,7 +27,7 @@ describe Hren::Her::Extensions::ExtendedOrm do
         article = Article.create!(title: '')
         article.id.should_not be_present
         article.errors[:title].should be_present
-      }.to raise_exception(Exception, "title can't be blank")
+      }.to raise_exception(Hren::Client::ResourceException, "title can't be blank")
     end
   end
 end

@@ -7,7 +7,7 @@ module Hren
         module ClassMethods
           def create!(*args)
             resource = create(*args)
-            raise Exception.new([resource.errors.keys.first, resource.errors.values.first].join(' ')) unless resource.errors.empty?
+            raise Hren::Client::ResourceException.new([resource.errors.keys.first, resource.errors.values.first].join(' ')) unless resource.errors.empty?
             resource
           end
 
@@ -51,7 +51,7 @@ module Hren
 
         def update_attributes!(params)
           update_attributes(params)
-          raise Exception.new([errors.keys.first, errors.values.first].join(' ')) unless errors.empty?
+          raise Hren::Client::ResourceException.new([errors.keys.first, errors.values.first].join(' ')) unless errors.empty?
           self
         end
 
@@ -65,7 +65,7 @@ module Hren
 
         def destroy!
           destroy
-          raise Exception.new('Destroy failed') if metadata[:hren_action_success] == false
+          raise Hren::Client::FailedActionException.new('Destroy failed') if metadata[:hren_action_success] == false
           self
         end
 

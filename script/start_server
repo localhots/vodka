@@ -1,0 +1,2 @@
+#!/bin/bash
+cd spec/dummy && RAILS_ENV=production bundle exec thin start -C config/thin.yml 2>&1 > log/thin_start.log

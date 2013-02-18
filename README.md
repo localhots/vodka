@@ -14,10 +14,10 @@ It is strongly recommended *NOT* to use this gem in production (yet).
 Add this gem to both server and client application Gemfiles:
 ```ruby
 # Server
-gem 'hren', require: ['hren', 'hren/server']
+gem 'hren', require: 'hren/server'
 
 # Client
-gem 'hren', require: ['hren', 'hren/client']
+gem 'hren', require: 'hren/client'
 ```
 
 ## Configuring server
@@ -44,14 +44,14 @@ end
 Create controllers in `app/controllers/hren`
 ```ruby
 # articles_controller.rb
-class ArticlesController < HrenController
+class ArticlesController < Hren::Server::HrenController
   def best
     respond_with_collection(Article.best)
   end
 end
 
 # comments_controller.rb
-class CommentsController < HrenController
+class CommentsController < Hren::Server::HrenController
   def approve
     hren_response.success = resource.approve
     respond_with_resource

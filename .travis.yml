@@ -1,0 +1,13 @@
+rvm:
+  - 1.9.3
+script: 'bundle exec rspec'
+before_script:
+  - ./script/setup_db
+  - ./script/start_server
+after_script:
+  - ./script/stop_server
+after_failure:
+  - ./script/show_logs
+notifications:
+  hipchat:
+    secure: "ZRBjkrxpnCw4AYpITgXBA5nGpWHECFbPLZaoG0t1KGTGsd7QzG0bG+aRcGts\nHXqhP6aCkFB74K7IxGk+/C5kj7mVYwD4XjF6VRXULgYy3HZtSuh87vQnBIoX\nSi27onNxIbKHCnD/ctysz8SF+zgB1hTPt+Q1cySG8XEtadNLN1o="

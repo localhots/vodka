@@ -1,6 +1,5 @@
 # App
 require 'will_paginate'
-require 'hren'
 require 'hren/client'
 
 # Dummy Client

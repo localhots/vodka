@@ -29,7 +29,7 @@ describe Hren::Her::Extensions::ExtendedOrm do
         article = Article.create(title: 'special')
         article.destroy!
         article.metadata[:hren_action_success].should be_false
-      }.to raise_exception(Exception, 'Destroy failed')
+      }.to raise_exception(Hren::Client::FailedActionException, 'Destroy failed')
     end
   end
 end

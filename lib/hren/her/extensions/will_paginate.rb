@@ -8,24 +8,23 @@ module Hren
 
         module ClassMethods
           def paginate(params)
-            all(params)
+            response = all(params)
+            PaginatedCollection.new(response, response.metadata, response.errors)
           end
         end
       end
 
-      module PaginatedCollection
-        extend ActiveSupport::Concern
-
+      class PaginatedCollection < ::Her::Collection
         def current_page
-          metadata[:page].to_i if metadata.has_key?(:page)
+          metadata[:page].to_i
         end
 
         def per_page
-          metadata[:per_page].to_i if metadata.has_key?(:per_page)
+          metadata[:per_page].to_i
         end
 
         def total_entries
-          metadata[:total].to_i if metadata.has_key?(:total)
+          metadata[:total].to_i
         end
       end
     end
@@ -33,4 +32,3 @@ module Hren
 end
 
 Her::Model.send(:include, Hren::Her::Extensions::WillPaginate)
-Her::Collection.send(:include, Hren::Her::Extensions::PaginatedCollection)

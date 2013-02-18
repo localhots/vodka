@@ -10,21 +10,9 @@ module Hren
           elsif params[:hren_special_action] == 'last'
             respond_with_collection([resource_class.last])
           elsif params[:hren_special_where].present?
-            relation = resource_class
-            conditions = MultiJson.load(params[:hren_special_where])
-            conditions.each do |condition|
-              if condition.is_a?(Hash)
-                relation = relation.where(condition)
-              else
-                relation = relation.where(*condition)
-              end
-            end
-            respond_with_collection(relation.all)
+            _special_where
           elsif defined?(WillPaginate) && params[:page].present?
-            per_page = params[:per_page] || DEFAULT_PER_PAGE
-            data = resource_class.paginate(page: params[:page], per_page: per_page).all
-            hren_response.metadata = { page: data.current_page, per_page: per_page, total: resource_class.count }
-            respond_with_collection(data)
+            _special_paginate
           else
             respond_with_collection(resource_class.all)
           end
@@ -48,6 +36,28 @@ module Hren
           resource.destroy
           hren_response.success = resource.destroyed?
           respond_with_resource
+        end
+
+      private
+
+        def _special_where
+          relation = resource_class
+          conditions = MultiJson.load(params[:hren_special_where])
+          conditions.each do |condition|
+            if condition.is_a?(Hash)
+              relation = relation.where(condition)
+            else
+              relation = relation.where(*condition)
+            end
+          end
+          respond_with_collection(relation.all)
+        end
+
+        def _special_paginate
+          per_page = params[:per_page] || DEFAULT_PER_PAGE
+          data = resource_class.paginate(page: params[:page], per_page: per_page).all
+          hren_response.metadata = { page: data.current_page, per_page: per_page, total: resource_class.count }
+          respond_with_collection(data)
         end
       end
     end

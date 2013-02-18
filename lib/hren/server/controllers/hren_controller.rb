@@ -1,6 +1,6 @@
 module Hren
   module Server
-    class HrenController < ApplicationController
+    class HrenController < ActionController::Base
       include Handlers::Scaffold
       include Handlers::Resource
       include Handlers::Response

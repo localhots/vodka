@@ -14,14 +14,13 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = Hren::VERSION
 
-  gem.add_runtime_dependency 'her'
-  gem.add_runtime_dependency 'faraday'
-  gem.add_runtime_dependency 'multi_json'
+  gem.add_runtime_dependency 'her', '~> 0.4'
+  gem.add_runtime_dependency 'multi_json', '~> 1.6.1'
 
-  gem.add_development_dependency 'rails'
-  gem.add_development_dependency 'will_paginate'
-  gem.add_development_dependency 'sqlite3'
-  gem.add_development_dependency 'thin'
+  gem.add_development_dependency 'rails', '~> 3.2.12'
+  gem.add_development_dependency 'will_paginate', '~> 3.0.4'
+  gem.add_development_dependency 'sqlite3', '~> 1.3.7'
+  gem.add_development_dependency 'thin', '~> 1.5.0'
 
-  gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'rspec', '~> 2.12.0'
 end

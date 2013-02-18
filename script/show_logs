@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo 'Setup DB log:'
+cat spec/dummy/log/setup_db.log
+echo ''
+
+echo 'Thin start log:'
+cat spec/dummy/log/thin_start.log
+echo ''
+
+echo 'Thin log:'
+cat spec/dummy/log/thin.3000.log
+echo ''
+
+echo 'Dummy log:'
+cat spec/dummy/log/production.log
+echo ''

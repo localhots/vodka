@@ -38,7 +38,7 @@ describe Hren::Her::Extensions::ExtendedOrm do
 
         article.update_attribute!(:title, '')
         article.title.should == ''
-      }.to raise_exception(Exception, "title can't be blank")
+      }.to raise_exception(Hren::Client::ResourceException, "title can't be blank")
     end
   end
 end
