@@ -1,7 +1,7 @@
 PATH
   remote: ../..
   specs:
-    vodka (0.0.1)
+    vodka (0.1.0)
       her (~> 0.4)
       multi_json (~> 1.6.1)
 

@@ -31,7 +31,7 @@ module Vodka
         end
 
         def expected_response_signature
-          Digest::SHA512.hexdigest([request_id, Vodka::Client.config.response_secret].join)
+          Vodka::Client.config.digest.hexdigest([request_id, Vodka::Client.config.response_secret].join)
         end
       end
     end

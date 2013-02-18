@@ -1,6 +1,10 @@
 module Vodka
   class Configuration
-    attr_accessor :request_secret, :response_secret, :api_url
+    attr_accessor :request_secret, :response_secret, :api_url, :digest
+
+    def initialize
+      @digest = Digest::SHA512
+    end
   end
 
   module Configurable

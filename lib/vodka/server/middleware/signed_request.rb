@@ -2,7 +2,7 @@ module Vodka
   module Server
     module Middleware
       class SignedRequest
-        attr_reader :app, :env, :request
+        attr_reader :app, :env
 
         def initialize(app, options = {})
           @app, @options = app, options
@@ -10,8 +10,6 @@ module Vodka
 
         def call(env)
           @env = env
-          @request = Rack::Request.new(env)
-
           request_signature_valid? ? app.call(env) : forbidden
         end
 
@@ -28,11 +26,11 @@ module Vodka
         end
 
         def expected_request_signature
-          Digest::SHA512.hexdigest([request_id, Vodka::Server.config.request_secret].join)
+          Vodka::Server.config.digest.hexdigest([request_id, Vodka::Server.config.request_secret].join)
         end
 
         def response_signature
-          Digest::SHA512.hexdigest([request_id, Vodka::Server.config.response_secret].join)
+          Vodka::Server.config.digest.hexdigest([request_id, Vodka::Server.config.response_secret].join)
         end
 
         def forbidden

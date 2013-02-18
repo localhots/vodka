@@ -23,7 +23,7 @@ module Vodka
         end
 
         def request_signature
-          Digest::SHA512.hexdigest([request_id, Vodka::Client.config.request_secret].join)
+          Vodka::Client.config.digest.hexdigest([request_id, Vodka::Client.config.request_secret].join)
         end
       end
     end
