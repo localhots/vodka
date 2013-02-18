@@ -4,6 +4,7 @@ Hren uses [Her](https://github.com/remiprev/her) to make communication between t
 It currently supports ORM's on server:
 - [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord)
 - [MongoMapper](https://github.com/jnunemaker/mongomapper)
+
 Plugins:
 - [WillPaginate](https://github.com/mislav/will_paginate)
 
@@ -12,15 +13,17 @@ It is strongly recommended *NOT* to use this gem in production (yet).
 ## Installation
 Add this gem to both server and client application Gemfiles:
 ```ruby
-gem 'hren'
+# Server
+gem 'hren', require: ['hren', 'hren/server']
+
+# Client
+gem 'hren', require: ['hren', 'hren/client']
 ```
 
 ## Configuring server
 Add initializer `hren_setup.rb` to `config/initializers`:
 
 ```ruby
-require 'hren/server'
-
 Hren::Server.configure do |c|
   c.secret = 'whatever'
 end
@@ -50,7 +53,7 @@ end
 # comments_controller.rb
 class CommentsController < HrenController
   def approve
-    response.success = resource.approve
+    hren_response.success = resource.approve
     respond_with_resource
   end
 end
@@ -91,26 +94,27 @@ end
 Add initializer `hren_setup.rb` to `config/initializers`:
 
 ```ruby
-require 'hren/client'
-
 Hren::Client.configure do |c|
   c.api_url = 'https://api.myproject.org/hren'
   c.secret = 'whatever' # Same as server's
 end
+Hren::Client.config.configure_her!
 ```
 
 ## Usage
 After all the configuration is done, you can use your Her-applied models with all the new possibilities.
-```ruby
-Article.create!
-article.update_attribute(:title, 'Wut')
-article.update_attribute!(:title, 'Wut')
-article.update_attributes(title: 'Wut')
-article.update_attributes!(title: 'Wut')
-article.destroy!
-article.delete
-article.delete!
-Article.where('rating > ?', 10)
-Article.where(user_id: 1)
+
+Hren adds some convinient methods to client and supports them on server:
+- `.create!` (throws exception on error)
+- `.paginate` (same as `.all`, for WillPaginate compatibility)
+- `.where` (supports chaining the way you expect)
+- `#update_attribute`
+- `#update_attribute!` (throws exception on error)
+- `#update_attributes`
+- `#update_attributes!` (throws exception on error)
+- `#destroy!` (throws exception on error)
+- `#delete` (acts as `#destroy`)
+- `#delete!` (acts as `#destroy!`)
+
 ## What the hell is hren?
 "Hren" means "horseradish" in Russian. It is also a common Russian euphemism for "dick", so is the word "her".
