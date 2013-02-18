@@ -4,6 +4,7 @@ module Hren
 
     def configure_her!
       ::Her::API.setup(url: api_url) do |c|
+        c.use Hren::Client::Middleware::ForbiddenAware
         c.use Hren::Client::Middleware::SignedRequest
         c.use Faraday::Request::UrlEncoded
         c.use ::Her::Middleware::SecondLevelParseJSON

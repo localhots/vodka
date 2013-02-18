@@ -30,7 +30,7 @@ module Hren
           [
             403,
             { 'Content-Type' => 'application/json; charset=utf-8' },
-            ['{"data":nil,"errors":{"hren_error":"403 Forbidden"},"metadata":{}']
+            ['{"data":null,"errors":{"hren_error":"403 Forbidden"},"metadata":{}}']
           ]
         end
       end
