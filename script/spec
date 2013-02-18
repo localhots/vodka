@@ -2,13 +2,15 @@
 
 cd spec/dummy
 rm -f log/*
+rm db/development.sqlite3
 bundle install --path .bundle 2>&1 > log/bundler.log
-RAILS_ENV=test bundle exec rake db:reset 2>&1 > log/setup_db.log
-RAILS_ENV=test bundle exec thin start -C config/thin.yml 2>&1 > log/thin_start.log
+RAILS_ENV=development bundle exec rake db:migrate 2>&1 > log/setup_db.log
+RAILS_ENV=development bundle exec rake db:seed 2>&1 >> log/setup_db.log
+RAILS_ENV=development bundle exec thin start -C config/thin.yml 2>&1 > log/thin_start.log
 cd ../..
 bundle exec rspec
 code=$?
 cd spec/dummy
-RAILS_ENV=test bundle exec thin stop -C config/thin.yml 2>&1 > log/thin_stop.log
+RAILS_ENV=development bundle exec thin stop -C config/thin.yml 2>&1 > log/thin_stop.log
 cd ../..
 exit $code

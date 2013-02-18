@@ -18,5 +18,5 @@ cat $dummy_path/log/thin.3000.log
 echo ''
 
 echo 'Dummy log:'
-cat $dummy_path/log/test.log
+cat $dummy_path/log/development.log
 echo ''

@@ -2,5 +2,5 @@
 dummy_path="$(pwd)/spec/dummy"
 BUNDLE_PATH=$dummy_path/.bundle
 BUNDLE_GEMFILE=$dummy_path/Gemfile
-RAILS_ENV=test
+RAILS_ENV=development
 cd $dummy_path && bundle exec thin stop -C $dummy_path/config/thin.yml 2>&1 > /dev/null
