@@ -5,6 +5,7 @@ Vodka uses [Her](https://github.com/remiprev/her) as a REST client.
 
 Vodka currently supports these ORMs on server:
 - [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord)
+- [Mongoid](https://github.com/mongoid/mongoid)
 - [MongoMapper](https://github.com/jnunemaker/mongomapper)
 
 And the following plugins on client:
@@ -77,8 +78,8 @@ class Article < ActiveRecord::Base
   scope :best, ->{ where('rating > 100') }
   validates_presence_of :title, :body
 
-  # Defines fields and actions that would be used in :as_json method
-  present_with :id, :title, :body, :created_at
+  # If .present_with was not called, default presenter (named as ModelNamePresenter) will be used
+  # present_with ArticlePresenter
 end
 
 # comment.rb
@@ -87,8 +88,8 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :body
 
-  # Defines fields and actions that would be used in :as_json method
-  present_with :id, :body, :author_name, :created_at
+  # Defines custom presenter
+  present_with CommentCustomPresenter
 
   def approve
     update_attributes(status: 'approved')
@@ -96,6 +97,16 @@ class Comment < ActiveRecord::Base
 
   def author_name
     [user.first_name, user.last_name].join(' ')
+  end
+end
+```
+
+Add presenters:
+```ruby
+# article_presenter.rb
+class ArticlePresenter < VodkaPresenter
+  def present
+    json(id: id, title: title)
   end
 end
 ```
@@ -113,10 +124,12 @@ Vodka::Client.configure do |c|
 
   # Any class that responds to .hexdigest method
   c.digest = Digest::SHA1 # Default is Digest::SHA512, same as server's
-end
-Vodka::Client.configure_her!
 
-# Instead of calling Vodka::Client.configure_her! you may configure her yourself
+  # Configure Her automatically
+  c.auto_configure_her = false
+end
+
+# You can call Vodka::Client.config.configure_her! or configure Her yourself
 # Her::API.setup(url: Vodka::Client.config.api_url) do |c|
 #   c.use Vodka::Client::Middleware::ErrorAware
 #   c.use Vodka::Client::Middleware::SignedRequest

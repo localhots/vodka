@@ -16,10 +16,10 @@ module Vodka
           presented_data = nil
           errors_to_return = errors
         elsif data.is_a?(Array)
-          presented_data = data.map(&:present_vodka)
+          presented_data = data.map{ |item| item.try(:present) }
           errors_to_return = errors
         else
-          presented_data = data.present_vodka
+          presented_data = data.try(:present)
           errors_to_return = presented_data.delete(:errors)
         end
 

@@ -8,5 +8,7 @@ describe Vodka::Client::Middleware::SignedRequest do
 
     I18n.locale = :ru
     Article.hello.metadata[:hello].should == 'Привет, мир!'
+
+    I18n.locale = :en
   end
 end

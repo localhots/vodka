@@ -10,6 +10,7 @@ module Vodka
           end
 
           @relation = resource_class
+          vodka_apply_relation_where_conditions!
           vodka_apply_where_conditions!
           vodka_apply_pagination_conditions!
 
@@ -36,6 +37,16 @@ module Vodka
         end
 
       private
+
+        def vodka_apply_relation_where_conditions!
+          params.each do |key, value|
+            if key.to_s.end_with?('_id')
+              model = key.slice(0, key.length - 3).classify.constantize
+              value = value.to_i if model.ancestors.include?(ActiveRecord::Base)
+              @relation = @relation.where(key => value)
+            end
+          end
+        end
 
         def vodka_apply_where_conditions!
           return unless params[:vodka_special_where].present?

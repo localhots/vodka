@@ -15,13 +15,16 @@ module Vodka
         end
 
         def respond_with_collection(resources)
-          vodka_response.data = resources
+          vodka_response.data = resources.to_a
           respond!
         end
 
         def respond!
-          response.headers['X-Response-Id'] = vodka_response.id
-          response.headers['X-Response-Signature'] = vodka_response.signature
+          if Vodka::Server.config.perform_request_signing
+            response.headers['X-Response-Id'] = vodka_response.id
+            response.headers['X-Response-Signature'] = vodka_response.signature
+          end
+
           return render text: vodka_response.json, status: vodka_response.code, content_type: 'application/json'
         end
 
