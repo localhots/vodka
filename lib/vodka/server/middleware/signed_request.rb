@@ -12,6 +12,7 @@ module Vodka
           @env = env
 
           return app.call(env) if Vodka::Server.config.perform_request_signing == false
+          return app.call(env) unless env['REQUEST_PATH'].start_with?(Vodka::Server.config.prefix)
 
           request_signature_valid? ? app.call(env) : forbidden
         end

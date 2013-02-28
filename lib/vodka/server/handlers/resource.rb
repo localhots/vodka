@@ -11,14 +11,18 @@ module Vodka
         def extract_resource
           return unless params.has_key?(:id)
 
-          new_resource = resource_class.find_by_id(params[:id])
+          new_resource = begin
+            resource_class.find(params[:id])
+          rescue
+            nil
+          end
           vodka_response.success = false if new_resource.nil?
 
           new_resource
         end
 
         def filtered_params
-          params.slice(*resource_class.accessible_attributes.to_a)
+          params.permit(*(resource_class.attribute_names - ['id']).map(&:to_sym))
         end
 
         # Resource magick

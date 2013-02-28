@@ -7,7 +7,7 @@ module Vodka
       include Handlers::Resource
       include Handlers::Response
 
-      before_filter :set_response_id, :fix_params_names, :set_locale
+      before_filter :set_response_id, :set_locale
       before_filter :handle_not_found, only: [:show, :update, :destroy]
 
     private
@@ -16,10 +16,6 @@ module Vodka
         return unless defined?(I18n)
         locale = request.headers['X-Response-Locale']
         I18n.locale = locale if locale.present? && locale.to_sym.in?(I18n.available_locales)
-      end
-
-      def fix_params_names
-        params[:password] = params.delete(:buzzword) unless params[:buzzword].nil?
       end
 
       def handle_not_found

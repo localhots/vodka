@@ -1,7 +1,7 @@
 module Vodka
   module Server
     class Response
-      attr_accessor :id, :code, :success, :data, :metadata, :errors
+      attr_accessor :id, :code, :success, :data, :presenter, :metadata, :errors
 
       def initialize
         @code = 200
@@ -13,21 +13,32 @@ module Vodka
         metadata[:vodka_action_success] = success unless success.nil?
 
         if data.nil?
-          presented_data = nil
+          presented_data = {}
           errors_to_return = errors
         elsif data.is_a?(Array)
-          presented_data = data.map{ |item| item.try(:present) }
+          presented_data = data.map{ |item| present(item) }
           errors_to_return = errors
         else
-          presented_data = data.try(:present)
+          presented_data = present(data)
           errors_to_return = presented_data.delete(:errors)
         end
 
-        MultiJson.dump(
+        response = {
           data: presented_data,
           metadata: metadata,
           errors: errors_to_return
-        )
+        }
+        # ap response if Rails.env.development? && defined?(AwesomePrint)
+        MultiJson.dump(response)
+      end
+
+      def present(item)
+        return item if item.is_a?(Hash)
+        if presenter.nil?
+          item.try(:present)
+        else
+          presenter.new(item).present
+        end
       end
 
       def signature

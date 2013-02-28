@@ -5,7 +5,8 @@ module Vodka
                   :digest,                  # Digest algorithm to use in signing process
                   :perform_request_signing, # If the value is set to false no signing middlewares will be injected
                   :her_auto_configure,      # Configure Her automatically
-                  :api_url                  # REST API endpoint passed to Her
+                  :api_url,                 # REST API endpoint passed to Her
+                  :prefix                   # Almost the same thing, path prefix for server
 
     def initialize
       @digest = Digest::SHA512

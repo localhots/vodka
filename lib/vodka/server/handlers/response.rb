@@ -2,20 +2,21 @@ module Vodka
   module Server
     module Handlers
       module Response
-
         def vodka_response
           @vodka_response ||= Vodka::Server::Response.new
         end
 
       private
 
-        def respond_with_resource(custom_resource = nil)
+        def respond_with_resource(custom_resource = nil, presenter = nil)
           vodka_response.data = custom_resource || resource
+          vodka_response.presenter = presenter unless presenter.nil?
           respond!
         end
 
-        def respond_with_collection(resources)
+        def respond_with_collection(resources, presenter = nil)
           vodka_response.data = resources.to_a
+          vodka_response.presenter = presenter unless presenter.nil?
           respond!
         end
 

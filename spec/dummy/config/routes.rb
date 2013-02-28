@@ -6,4 +6,6 @@ Dummy::Application.routes.draw do
     end
     resources :authors
   end
+
+  resources :articles
 end

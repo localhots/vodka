@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = Vodka::VERSION
 
-  gem.add_runtime_dependency 'her', '~> 0.4'
+  gem.add_runtime_dependency 'extended_her', '~> 0.5'
   gem.add_runtime_dependency 'multi_json', '~> 1.6.1'
   gem.add_development_dependency 'rspec', '~> 2.12.0'
   gem.add_development_dependency 'i18n', '~> 0.6.1'
